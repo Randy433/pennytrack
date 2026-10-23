@@ -1,3 +1,7 @@
+import json
+
+transactions = []
+
 def add_transaction():
     pass
 
