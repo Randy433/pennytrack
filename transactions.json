@@ -1,0 +1,12 @@
+[
+    {
+        "amount": 5000.0,
+        "category": "Food",
+        "description": "Groceries"
+    },
+    {
+        "amount": 5000.0,
+        "category": "Transport",
+        "description": "work"
+    }
+]
