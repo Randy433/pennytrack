@@ -41,12 +41,14 @@ def create_transaction(amount, transaction_type, category, description):
     except (ValueError, TypeError):
         raise ValueError("Amount must be a valid number.")
     if amount <= 0:
-        raise ValueError("Amount must be a valid number.")
+        raise ValueError("Amount must be greater than zero.")
     transaction_type = transaction_type.strip().lower()
     if transaction_type not in ("income", "expense"):
         raise ValueError("Type must be income or expense.")
     if not category.strip():
         raise ValueError("Category cannot be empty.")
+    if not description.strip():
+        raise ValueError("Description cannot be empty.")
         
     transaction = {
         "amount": amount,

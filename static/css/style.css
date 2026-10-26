@@ -131,3 +131,13 @@ td {
 .add-transaction button:hover {
     background: #263b63;
 }
+
+.error-message {
+    color: #b91c1c;
+    background-color: #fee2e2;
+    border: 1px solid #fca5a5;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}

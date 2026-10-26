@@ -1,39 +1,9 @@
 [
     {
-        "amount": 150000.0,
-        "type": "income",
-        "category": "Salary",
-        "description": "October"
-    },
-    {
-        "amount": 150000.0,
-        "type": "income",
-        "category": "Salary",
-        "description": "September"
-    },
-    {
-        "amount": 150000.0,
-        "type": "income",
-        "category": "Salary",
-        "description": "August"
-    },
-    {
-        "amount": 150000.0,
-        "type": "income",
-        "category": "Salary",
-        "description": "July"
-    },
-    {
-        "amount": 150000.0,
-        "type": "income",
-        "category": "Salary",
-        "description": "June"
-    },
-    {
         "amount": 100000.0,
         "type": "income",
         "category": "Salary",
-        "description": "May"
+        "description": "Match"
     },
     {
         "amount": 100000.0,
@@ -45,12 +15,36 @@
         "amount": 100000.0,
         "type": "income",
         "category": "Salary",
-        "description": "March"
+        "description": "May"
     },
     {
-        "amount": 100000.0,
+        "amount": 150000.0,
         "type": "income",
         "category": "Salary",
-        "description": "February"
+        "description": "June"
+    },
+    {
+        "amount": 150000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "July"
+    },
+    {
+        "amount": 150000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "August"
+    },
+    {
+        "amount": 150000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "September"
+    },
+    {
+        "amount": 140000.0,
+        "type": "expense",
+        "category": "Transport",
+        "description": "Work"
     }
 ]
