@@ -33,6 +33,28 @@ def add_transaction(transactions):
     save_transactions(transactions)
     print("Transactions Added Successfully!")
 
+def create_transaction(amount, transaction_type, category, description):
+    try:
+        amount = float(amount)
+    except (ValueError, TypeError):
+        raise ValueError("Amount must be a valid number.")
+    if amount <= 0:
+        raise ValueError("Amount must be a valid number.")
+    transaction_type = transaction_type.strip().lower()
+    if transaction_type not in ("income", "expense"):
+        raise ValueError("Type must be income or expense.")
+    if not category.strip():
+        raise ValueError("Category cannot be empty.")
+        
+    transaction = {
+        "amount": amount,
+        "type": transaction_type,
+        "category": category,
+        "description": description,
+    }
+
+    return transaction
+
 def view_transaction(transactions):
     if not transactions:
         print("No transactions found.")
@@ -91,6 +113,25 @@ def display_financial_summary(transactions):
     print(f"Total Expenses:\t {total_expenses:,.2f}") 
     print(f"Remaining Balance:\t {balance:,.2f}")
     print("=======================================")
+
+
+def calculate_financial_summary(transactions):
+    total_income = 0
+    total_expenses = 0
+
+    for transaction in transactions:
+        if transaction["type"] == "income":
+            total_income += transaction["amount"]
+        elif transaction["type"] == "expense":
+            total_expenses += transaction["amount"]
+
+    balance = total_income - total_expenses
+
+    return {
+        "total_income": total_income,
+        "total_expenses": total_expenses,
+        "balance": balance
+    }
 
 def display_spending_by_category(category_total):
     print("\n===== SPENDING BY CATEGORY =====")
