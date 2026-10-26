@@ -2,6 +2,7 @@ import json
 
 transactions = []
 
+
 def add_transaction(transactions):
     while True:
         try:
@@ -33,6 +34,7 @@ def add_transaction(transactions):
     save_transactions(transactions)
     print("Transactions Added Successfully!")
 
+
 def create_transaction(amount, transaction_type, category, description):
     try:
         amount = float(amount)
@@ -55,6 +57,7 @@ def create_transaction(amount, transaction_type, category, description):
 
     return transaction
 
+
 def view_transaction(transactions):
     if not transactions:
         print("No transactions found.")
@@ -71,6 +74,7 @@ def view_transaction(transactions):
         print(f"{number}. {transaction_type.title()} | "
               f"₦{amount:,.2f} | {category} | {description}")
 
+
 def calculate_balance(transactions):
     total_income = 0
     total_expenses = 0
@@ -82,11 +86,13 @@ def calculate_balance(transactions):
 
     return total_income - total_expenses
 
+
 def display_balance(transactions):
     balance = calculate_balance(transactions)
 
     print("\n===== Account Balance =====")
     print(f"Remaining balance: {balance:,.2f}")
+
 
 def calculate_spending_by_category(transactions):
     category_total = {}
@@ -99,6 +105,7 @@ def calculate_spending_by_category(transactions):
             category_total[category] = transaction['amount']
     return category_total
 
+
 def display_financial_summary(transactions):
     total_income = 0
     total_expenses = 0
@@ -109,8 +116,8 @@ def display_financial_summary(transactions):
             total_expenses += transaction['amount']
     balance = total_income - total_expenses
     print("========== PENNYTRACK SUMMARY ==========")
-    print(f"Total Income:\t {total_income:,.2f}")
-    print(f"Total Expenses:\t {total_expenses:,.2f}") 
+    print(f"Total Income:\t\t {total_income:,.2f}")
+    print(f"Total Expenses:\t\t {total_expenses:,.2f}") 
     print(f"Remaining Balance:\t {balance:,.2f}")
     print("=======================================")
 
@@ -133,6 +140,7 @@ def calculate_financial_summary(transactions):
         "balance": balance
     }
 
+
 def display_spending_by_category(category_total):
     print("\n===== SPENDING BY CATEGORY =====")
     if not category_total:
@@ -141,9 +149,11 @@ def display_spending_by_category(category_total):
     for category, total in category_total.items():
         print(f"{category}: ₦{total:,.2f}")
 
+
 def spending_by_category(transactions):
     category_total = calculate_spending_by_category(transactions)
     display_spending_by_category(category_total)
+
 
 def edit_transaction(transactions):
     if len(transactions) == 0:
@@ -180,8 +190,13 @@ def edit_transaction(transactions):
             continue
         else:
             break
-
+    while True:
+        transaction_type = input("Enter type 'income' / 'expense: ").lower()
+        if transaction_type == "income" or transaction_type == "expense":
+            break
+            print("Invalid type. Enter 'income' or 'expense'")
     transaction["amount"] = amount
+    transaction["type"] = transaction_type
     transaction["category"] = input("Enter new category: ")
     transaction["description"] = input("Enter new description: ")
 
@@ -210,10 +225,12 @@ def delete_transaction(transactions):
     save_transactions(transactions)
     print("Transaction deleted successfully!")
 
+
 def save_transactions(transactions):
     with open("transactions.json", "w") as file:
         json.dump(transactions, file, indent=4)
     print("transactions saved!")
+
 
 def load_transactions():
     try:
@@ -225,6 +242,7 @@ def load_transactions():
         print(
             "Transaction file is corrupted or not valid JSON. Starting with an empty list.")
         return []
+
 
 transactions = load_transactions()
 

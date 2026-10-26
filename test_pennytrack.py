@@ -12,6 +12,7 @@ from pennytrack import (
     edit_transaction
 )
 
+
 class TestPennyTrack(unittest.TestCase):
 
     def test_balance_with_income_and_expenses(self):
@@ -67,7 +68,6 @@ class TestPennyTrack(unittest.TestCase):
 
             self.assertEqual(result, transactions)
 
-
     def test_delete_transaction(self):
         transactions = [
             {
@@ -84,7 +84,6 @@ class TestPennyTrack(unittest.TestCase):
 
         self.assertEqual(len(transactions), 0)
 
-
     def test_delete_invalid_number(self):
         transactions = [
             {
@@ -100,7 +99,6 @@ class TestPennyTrack(unittest.TestCase):
             delete_transaction(transactions)
 
         self.assertEqual(len(transactions), 1)
-
 
     def test_edit_transaction(self):
         transactions = [
@@ -139,7 +137,6 @@ class TestPennyTrack(unittest.TestCase):
             edit_transaction(transactions)
 
         self.assertEqual(transactions[0]["amount"], 5000)
-
 
 
 if __name__ == "__main__":
