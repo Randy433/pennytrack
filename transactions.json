@@ -1,38 +1,56 @@
 [
     {
-        "amount": 100000.0,
+        "amount": 150000.0,
         "type": "income",
         "category": "Salary",
-        "description": "Pebbles"
-    },
-    {
-        "amount": 20000.0,
-        "type": "expense",
-        "category": "Transport",
-        "description": "Work"
-    },
-    {
-        "amount": 30000.0,
-        "type": "expense",
-        "category": "Monthly",
-        "description": "Food"
-    },
-    {
-        "amount": 10000.0,
-        "type": "expense",
-        "category": "Monthly",
-        "description": "Subscription"
+        "description": "October"
     },
     {
         "amount": 150000.0,
         "type": "income",
         "category": "Salary",
-        "description": "NJFP"
+        "description": "September"
     },
     {
-        "amount": 30000.0,
-        "type": "expense",
-        "category": "Transport",
-        "description": "Lagos"
+        "amount": 150000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "August"
+    },
+    {
+        "amount": 150000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "July"
+    },
+    {
+        "amount": 150000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "June"
+    },
+    {
+        "amount": 100000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "May"
+    },
+    {
+        "amount": 100000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "April"
+    },
+    {
+        "amount": 100000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "March"
+    },
+    {
+        "amount": 100000.0,
+        "type": "income",
+        "category": "Salary",
+        "description": "February"
     }
 ]
