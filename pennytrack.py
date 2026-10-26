@@ -1,5 +1,7 @@
 import json
 
+TRANSACTIONS_FILE = "transactions.json"
+
 transactions = []
 
 
@@ -229,14 +231,14 @@ def delete_transaction(transactions):
 
 
 def save_transactions(transactions):
-    with open("transactions.json", "w") as file:
+    with open(TRANSACTIONS_FILE, "w") as file:
         json.dump(transactions, file, indent=4)
     print("transactions saved!")
 
 
 def load_transactions():
     try:
-        with open("transactions.json", "r") as file:
+        with open(TRANSACTIONS_FILE, "r") as file:
             return json.load(file)
     except FileNotFoundError:
         return []

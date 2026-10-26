@@ -59,15 +59,16 @@ class TestPennyTrack(unittest.TestCase):
         ]
 
         with tempfile.TemporaryDirectory() as temp_dir:
-            file_path = os.path.join(temp_dir, "transactions.json")
+            file_path = os.path.join(temp_dir, "test_transactions.json")
 
             with open(file_path, "w") as file:
                 json.dump(transactions, file)
 
-            with open(file_path, "r") as file:
-                result = json.load(file)
+            with patch("pennytrack.TRANSACTIONS_FILE", file_path):
+                save_transactions(transactions)
+                loaded_transactions = load_transactions()
 
-            self.assertEqual(result, transactions)
+                self.assertEqual(loaded_transactions, transactions)
 
     def test_delete_transaction(self):
         transactions = [
