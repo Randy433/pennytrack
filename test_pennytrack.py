@@ -110,13 +110,14 @@ class TestPennyTrack(unittest.TestCase):
             }
         ]
 
-        user_inputs = ["1", "7000", "Business", "Web development"]
+        user_inputs = ["1", "7000", "income", "Business", "Web development"]
 
         with patch("builtins.input", side_effect=user_inputs), \
             patch("pennytrack.save_transactions"):
             edit_transaction(transactions)
 
         self.assertEqual(transactions[0]["amount"], 7000)
+        self.assertEqual(transactions[0]["type"], "income")
         self.assertEqual(transactions[0]["category"], "Business")
         self.assertEqual(
             transactions[0]["description"], "Web development"
