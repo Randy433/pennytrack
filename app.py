@@ -66,7 +66,12 @@ def edit_transaction_web(transaction_id):
                 description
             )
         except ValueError as error:
-            return str(error), 400
+            return render_template(
+                "edit_transaction.html",
+                transaction=transaction,
+                error=str(error),
+                form_data=request.form
+            ), 400
         
         transactions[transaction_id] = updated_transaction
         save_transactions(transactions)
