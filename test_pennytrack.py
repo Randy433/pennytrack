@@ -11,7 +11,8 @@ from pennytrack import (
     save_transactions,
     load_transactions,
     delete_transaction,
-    edit_transaction
+    edit_transaction,
+    create_transaction
 )
 
 
@@ -141,7 +142,81 @@ class TestPennyTrack(unittest.TestCase):
 
         self.assertEqual(transactions[0]["amount"], 5000)
 
+    def test_create_valid_transaction(self):
+        transaction = create_transaction(
+            "5000",
+            "income",
+            "Salary",
+            "Monthly Salary"
+        )
+        self.assertEqual(transaction["amount"], 5000.0)
+        self.assertEqual(transaction["type"], "income")
+        self.assertEqual(transaction["category"], "Salary")
+        self.assertEqual(transaction["description"], "Monthly Salary")
 
+    def test_create_transaction_invalid_amount(self):
+        with self.assertRaises(ValueError):
+            create_transaction(
+                "abc",
+                "expense",
+                "Food",
+                "Lunch"
+            )
+    
+    def test_create_transaction_zero_amount(self):
+        with self.assertRaises(ValueError):
+            create_transaction(
+                "0",
+                "expense",
+                "Food",
+                "Lunch"
+            )
+
+    def test_create_transaction_negative_amount(self):
+        with self.assertRaises(ValueError):
+            create_transaction(
+                "-500",
+                "expense",
+                "Food",
+                "Lunch"
+            )
+    
+    def test_create_transaction_invalid_type(self):
+        with self.assertRaises(ValueError):
+            create_transaction(
+                "5000",
+                "transfer",
+                "Bank",
+                "Money transfer"
+            )
+    
+    def test_create_transaction_empty_category(self):
+        with self.assertRaises(ValueError):
+            create_transaction(
+                "5000",
+                "expense",
+                "   ",
+                "Lunch"
+            )
+
+    def test_create_transaction_whitespace_description(self):
+        with self.assertRaises(ValueError):
+            create_transaction(
+                "5000",
+                "expense",
+                "Food",
+                "   "
+            )
+
+    def test_create_transaction_empty_description(self):
+        with self.assertRaises(ValueError):
+            create_transaction(
+                "5000",
+                "expense",
+                "Food",
+                ""
+            )
+    
 class TestPennyTrackWeb(unittest.TestCase):
 
     def setUp(self):
@@ -248,6 +323,32 @@ class TestPennyTrackWeb(unittest.TestCase):
             "Web development"
         )
 
+    def test_edit_transaction_invalid_amount(self):
+        transactions = [
+            {
+                "amount":   5000.0,
+                "type": "income",
+                "category": "Salary",
+                "description":  "Monthly salary"
+            }
+        ]
+        
+        with patch("app.load_transactions", return_value=transactions), \
+            patch("app.save_transactions") as mock_save:
+                
+            response = self.client.post(
+                "/edit-transaction/0",
+                data={
+                    "amount":   "-500",
+                    "tyep": "income",
+                    "category": "Salary",
+                    "description":  "Monthly salary"
+                }
+            )
+        self.assertEqual(response.status_code, 400)
+        self.assertIn(b"Amount must be greater than zero", response.data)
+        self.assertIn(b'-500', response.data)
+        mock_save.assert_not_called()
 
 if __name__ == "__main__":
     unittest.main()
