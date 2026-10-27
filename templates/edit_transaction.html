@@ -24,18 +24,24 @@
             name="amount"
             min="0.01"
             step="0.01"
-            value="{{ transaction.amount }}"
+            value="{{ form_data.get('amount', transaction.amount) if form_data is defined else transaction.amount}}"
             required
         >
         <label for="type">Transaction Type</label>
         <select id="type"name="type"required>
           <option value="income"
-            {% if transaction.type== "income" %}selected{% endif %}>
+            {% if (form_data.get('type', transaction.type) if form_data is defined else transaction.type) == "income" %}
+              selected
+            {% endif %}
+          >
             Income
           </option>
 
           <option value="expense"
-            {% if transaction.type== "expense" %}selected{% endif %}>
+            {% if (form_data.get('type', transaction.type) if form_data is defined else transaction.type) == "expense" %}
+              selected
+            {% endif %}
+          >
             Expense
           </option>
         </select>
@@ -45,7 +51,7 @@
             type="text"
             id="category"
             name="category"
-            value="{{ transaction.category }}"
+            value="{{ form_data.get('category', transaction.category) if form_data is defined else transaction.category }}"
             required
         >
 
@@ -54,15 +60,20 @@
             type="text"
             id="description"
             name="description"
-            value="{{ transaction.description }}"
+            value="{{ form_data.get('description', transaction.description) if form_data is defined else transaction.description }}"
             required
         >
 
+        {% if error %}
+          <p class="error-message" role="alert">{{ error }}</p>
+        {% endif %}
         <button type="submit">Save Changes</button>
       </form>
 
       <p>
-        <a href="{{ url_for('home')}}">Cancel and return to dashboard</a>
+        <a href="{{ url_for('home')}}">
+          Cancel and return to dashboard
+        </a>
       </p>
     </section>
   </main>

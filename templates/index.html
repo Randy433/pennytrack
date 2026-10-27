@@ -15,7 +15,7 @@
     <main>
         <section class="add-transaction">
             <h2>Add a Transaction</h2>
-            <form action="/add-transaction"method="POST">
+            <form action="/add-transaction" method="POST">
                 <label for="amount">Amount (₦)</label>
                 <input 
                     type="number"
@@ -125,7 +125,7 @@
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="4">No transaction yet.</td>
+                        <td colspan="5">No transaction yet.</td>
                     </tr>
                     {% endfor %}
                 </tbody>
